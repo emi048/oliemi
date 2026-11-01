@@ -63,12 +63,7 @@ document.getElementById('salir').addEventListener('click', e => {
   location.reload();
 });
 
-/* ---------- Contador de visitas ---------- */
-const visitas = guardado.leer('visitas', 1240) + 1;
-guardado.escribir('visitas', visitas);
-document.getElementById('contador').textContent = String(visitas).padStart(6, '0');
-
-/* ---------- iPod (de mentirita, cambia de canción) ---------- */
+/* ---------- Reproductor estilo Spotify (de mentirita, cambia de canción) ---------- */
 const temas = [...document.querySelectorAll('#playlist li')];
 const cancion = document.getElementById('cancion');
 const progreso = document.getElementById('progreso');
@@ -78,7 +73,7 @@ let actual = 0, avance = 0, reloj = null;
 function mostrar(i) {
   temas.forEach(t => t.classList.remove('sonando'));
   temas[i].classList.add('sonando');
-  cancion.textContent = temas[i].textContent;
+  cancion.textContent = temas[i].querySelector('.titulo').firstChild.textContent;
 }
 function tic() {
   avance += 2;

@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420">
-  <!-- fondo rosa pastel con espirales suaves, inspirado en pag1 (Rose Rêverie) -->
-  <rect width="420" height="420" fill="#f4cad4"/>
-  <circle cx="330" cy="90" r="90" fill="#f8d9c8" opacity=".55"/>
-  <circle cx="80" cy="330" r="100" fill="#fbe1e8" opacity=".6"/>
-  <g fill="none" stroke="#fff" stroke-linecap="round" opacity=".3">
+  <!-- fondo verde oliva #242B14 con espirales suaves, mismo dibujo que el fondo de pag1 -->
+  <rect width="420" height="420" fill="#242b14"/>
+  <circle cx="330" cy="90" r="90" fill="#3a4322" opacity=".55"/>
+  <circle cx="80" cy="330" r="100" fill="#2f3719" opacity=".7"/>
+  <g fill="none" stroke="#4b5630" stroke-linecap="round" opacity=".55">
     <path stroke-width="13" d="M110 110 m0 -8 a8 8 0 1 1 -8 8 a18 18 0 1 1 18 -18 a30 30 0 1 1 -30 30 a44 44 0 1 1 44 -44 a58 58 0 1 1 -58 58"/>
     <path stroke-width="11" d="M320 300 m0 -7 a7 7 0 1 1 -7 7 a16 16 0 1 1 16 -16 a27 27 0 1 1 -27 27 a40 40 0 1 1 40 -40"/>
   </g>
-  <g fill="none" stroke="#f0a9bd" stroke-linecap="round" opacity=".28">
+  <g fill="none" stroke="#5b4146" stroke-linecap="round" opacity=".4">
     <path stroke-width="9" d="M330 90 m0 -6 a6 6 0 1 1 -6 6 a14 14 0 1 1 14 -14 a24 24 0 1 1 -24 24 a36 36 0 1 1 36 -36"/>
     <path stroke-width="8" d="M90 330 m0 -5 a5 5 0 1 1 -5 5 a12 12 0 1 1 12 -12 a21 21 0 1 1 -21 21"/>
   </g>

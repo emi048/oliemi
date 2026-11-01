@@ -1,38 +1,41 @@
-/* ============ Blog Oli & Emi — tema "portón rosa" ============ */
+/* ============ Blog Oli & Emi — réplica del layout de pag1 (Rose Rêverie) en verde ============ */
 :root {
+  --fondo: #242b14;                /* el verde que eligieron */
+  --franja: rgba(255, 255, 255, .07);     /* cabecera, como la franja rosa clara de pag1 */
+  --contenedor: rgba(255, 255, 255, .06); /* contenedor de columnas, como el blanco translúcido de pag1 */
+  --texto: #efe6cf;                /* texto sobre el verde */
+  --titulito: #b6bd92;             /* "ARCHIVO DEL BLOG", etc. (en pag1 gris) */
+  --link: #f2a7c0;
+  --fecha: #e98fb0;
+  --pestana: #8f6468;              /* pestañas malva */
+  --manteca: #f6ecc4;              /* cajas de los posts */
+  --texto-post: #7a4a55;
+  --seccion: #9a9a9a;              /* "📖 SUMMARY" gris */
   --rosa: #f7d3df;
-  --rosa-claro: #fdeef3;
   --rosa-fuerte: #e47a9f;
   --rosa-oscuro: #c2507a;
-  --verde: #e3f1d1;
-  --verde-fuerte: #9cc47a;
-  /* paleta inspirada en pag1 (Rose Rêverie) */
-  --fondo: #f4cad4 url('../img/fondo-espirales.svg') 0 0 / 900px 900px;
-  --sobre-fondo: #7a4a55; /* texto que va directo sobre el fondo */
-  --link-fondo: #b0587a;
-  --malva: #9c6a6f;      /* pestañas */
-  --manteca: #f8edc6;    /* cajas de los posts */
-  --gris-rosa: #a68c92;  /* titulitos de widgets */
   --cafe: #6e4552;
   --crema: #fffaf3;
-  --borde: #f0b9cb;
+  --titulo: 'Dancing Script', cursive;
   --script: 'Parisienne', cursive;
   --mano: 'Homemade Apple', cursive;
   --cuerpo: Georgia, 'Times New Roman', serif;
+  --chica: Verdana, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  color: var(--cafe);
+  color: var(--texto);
   font-family: var(--cuerpo);
   font-size: 13.5px;
-  line-height: 1.6;
-  background: var(--fondo);
+  line-height: 1.55;
+  background: var(--fondo) url('../img/fondo-espirales.svg') 0 0 / 900px 900px;
 }
 
-a { color: var(--rosa-oscuro); }
+a { color: var(--link); }
+img { max-width: 100%; }
 
 /* ============ PORTÓN ============ */
 .porton {
@@ -42,25 +45,12 @@ a { color: var(--rosa-oscuro); }
   transition: opacity 0.9s ease 1.4s, visibility 0s linear 2.3s;
 }
 .porton.abierto { opacity: 0; visibility: hidden; }
-
-.porton-escena {
-  display: flex;
-  height: min(72vh, 620px);
-  aspect-ratio: 736 / 1099;
-  max-width: 92vw;
-  perspective: 1400px;
-}
-.hoja {
-  flex: 1;
-  background-image: url('../img/porton.jpg');
-  background-size: 200% 100%;
-  transition: transform 1.8s cubic-bezier(.6, .05, .3, 1);
-}
+.porton-escena { display: flex; height: min(72vh, 620px); aspect-ratio: 736 / 1099; max-width: 92vw; perspective: 1400px; }
+.hoja { flex: 1; background-image: url('../img/porton.jpg'); background-size: 200% 100%; transition: transform 1.8s cubic-bezier(.6, .05, .3, 1); }
 .hoja-izq { background-position: left center; transform-origin: left center; }
 .hoja-der { background-position: right center; transform-origin: right center; }
 .porton.abierto .hoja-izq { transform: rotateY(-105deg); }
 .porton.abierto .hoja-der { transform: rotateY(105deg); }
-
 .porton-login { text-align: center; margin-top: 14px; transition: opacity .4s; }
 .porton.abierto .porton-login { opacity: 0; }
 .porton-titulo { font-family: var(--script); font-size: 34px; margin: 0 0 6px; color: var(--cafe); }
@@ -74,30 +64,16 @@ a { color: var(--rosa-oscuro); }
 .porton-botones button:hover { background: var(--rosa-fuerte); color: #fff; }
 .porton-botones .visita { font-size: 13px; opacity: .8; }
 
-/* ============ PÁGINA ============ */
-.pagina {
-  max-width: 1000px;
-  margin: 0 auto 30px;
-}
-
-/* barra de arriba: guirnalda de luces estrella de punta a punta */
-.barra-luces { width: 100%; }
+/* ============ BARRA DE ARRIBA ============ */
 .luces {
   height: 78px;
-  /* la foto tiene fondo blanco: multiply lo funde con el rosa y queda solo la guirnalda */
   /* la imagen la pone main.js ya sin el fondo blanco (data-sin-blanco) */
   background: 0 -58px / auto 220px repeat-x;
   animation: titilar 2.4s ease-in-out infinite;
 }
 @keyframes titilar { 50% { filter: brightness(1.12) saturate(1.25); } }
-.barra-moño {
-  display: flex; align-items: center; gap: 14px;
-  max-width: 1000px; margin: -14px auto 0;
-  padding: 0 12px;
-  color: var(--cafe);
-}
+.barra-moño { display: flex; align-items: center; gap: 14px; margin-top: -14px; padding: 0 14px; color: var(--cafe); }
 
-/* logo dentro del rótulo rosa con corazones (img/rotulo.jpg, fondo blanco fundido) */
 .logo-moño {
   display: grid; place-items: center;
   width: 150px; height: 112px; padding-top: 2px;
@@ -105,7 +81,6 @@ a { color: var(--rosa-oscuro); }
   font-family: var(--script); font-size: 30px; color: var(--cafe);
 }
 
-/* links como papelitos de puntilla pegados */
 .barra-links { display: flex; gap: 10px; align-items: center; }
 .papelito {
   display: inline-block;
@@ -117,7 +92,7 @@ a { color: var(--rosa-oscuro); }
     radial-gradient(circle, var(--crema) 2.6px, transparent 3.1px) 0 0 / 7px 7px border-box;
   font-family: var(--mano); font-size: 13px; line-height: 1;
   color: var(--cafe); text-decoration: none;
-  filter: drop-shadow(1px 2px 1px rgba(107, 74, 79, .25));
+  filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, .3));
   transition: transform .2s;
 }
 .papelito:nth-child(1) { transform: rotate(-3deg); }
@@ -125,9 +100,8 @@ a { color: var(--rosa-oscuro); }
 .papelito:nth-child(3) { transform: rotate(-1.5deg); }
 .papelito:hover { transform: rotate(0) scale(1.08); }
 
-/* saludo dentro del globo de texto de papel (img/globo-texto.jpg), recortado con su forma */
 .barra-moño .der { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; }
-.globo-sombra { filter: drop-shadow(1.5px 1.5px 0 #2b2224); }
+.globo-sombra { filter: drop-shadow(1.5px 1.5px 0 #111); }
 .globo {
   display: flex; align-items: center; justify-content: center;
   width: 160px; height: 116px; padding: 0 6px 22px 14px;
@@ -135,122 +109,109 @@ a { color: var(--rosa-oscuro); }
   clip-path: polygon(20.8% 9.9%, 34.9% 3.9%, 69.8% 2.6%, 85.8% 10.4%, 91.5% 20.8%, 96.2% 31.2%, 98.1% 54.5%, 94.3% 68.8%, 84% 80.5%, 76.4% 85.7%, 34.9% 88.8%, 20.8% 81.8%, 1.9% 98.7%, 11.3% 72.7%, 2.8% 53.2%, 2.8% 36.4%, 9.4% 20.8%);
   font-family: var(--mano); font-size: 13px; color: var(--cafe);
 }
-#salir { margin-top: -14px; font-family: var(--script); font-size: 22px; color: var(--cafe); text-decoration: none; }
+#salir { margin-top: -14px; font-family: var(--script); font-size: 22px; color: var(--texto); text-decoration: none; }
 #salir::before { content: '♡ '; font-family: var(--cuerpo); font-size: 11px; }
 #salir:hover { text-decoration: underline wavy; }
 
-/* cabecera: franja rosa translúcida, título a la izquierda (como pag1) */
-.cabecera {
-  margin-top: 14px;
-  padding: 14px 18px 12px;
-  background: rgba(247, 205, 216, .75);
-  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 4px 20px;
+/* ============ CABECERA: franja de punta a punta ============ */
+.cabecera { margin-top: 10px; padding: 14px 4px 10px; background: var(--franja); }
+.cabecera h1 {
+  font-family: var(--titulo); font-weight: 600; font-size: 34px; line-height: 1.1; margin: 0;
+  color: var(--rosa); text-shadow: 2px 2px 0 rgba(0, 0, 0, .45);
 }
-.rotulo h1 {
-  font-family: var(--script); font-weight: normal; font-size: 54px; line-height: 1; margin: 0;
-  color: var(--cafe); text-shadow: 1px 1px 0 #fff, 2px 2px 3px rgba(110, 69, 82, .25);
-}
-.rotulo h1 span { color: var(--link-fondo); }
-.bajada { margin: 6px 0 0; font-size: 14px; }
-.bajada::before { content: '♡ '; }
-.te-amo { font-family: var(--script); font-size: 40px; line-height: 1.1; color: #000; margin: 0; }
+.bajada { margin: 4px 0 0; font-size: 15px; line-height: 1.5; }
+.te-amo { font-family: var(--script); font-size: 22px; color: var(--link); white-space: nowrap; }
 
-/* pestañas malva con texto crema */
-.pestanas { display: flex; flex-wrap: wrap; gap: 4px; padding: 12px 14px 0; }
+/* ============ PESTAÑAS ============ */
+.pestanas { display: flex; flex-wrap: wrap; gap: 4px; padding: 14px 14px 0; }
 .pestanas a {
-  text-decoration: none; color: #fbf1e6; font-size: 13px;
-  background: var(--malva);
-  border-radius: 9px 9px 0 0; padding: 6px 15px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+  text-decoration: none; color: #f4e9dc; font-size: 13px;
+  background: var(--pestana);
+  border-radius: 8px 8px 0 0; padding: 5px 13px 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2);
 }
-.pestanas a:hover, .pestanas a.activa { background: #7f5157; }
+.pestanas a:hover, .pestanas a.activa { background: #7a5256; }
 
-.marquesina { overflow: hidden; white-space: nowrap; background: rgba(255, 250, 250, .55); font-size: 12px; padding: 3px 0; border-radius: 16px 16px 0 0; }
-.marquesina span { display: inline-block; padding-left: 100%; animation: marquesina 30s linear infinite; }
-@keyframes marquesina { to { transform: translateX(-100%); } }
-
-/* columnas */
-.columnas {
+/* ============ CONTENEDOR DE 3 COLUMNAS ============ */
+.contenedor {
   display: grid;
-  grid-template-columns: 200px 1fr 230px;
-  gap: 18px;
-  padding: 18px 14px;
-  /* contenedor blanco translúcido como el de pag1 */
-  background: rgba(255, 250, 250, .55);
+  grid-template-columns: 17% 1fr 31%;
+  gap: 22px;
+  padding: 18px 24px 30px;
+  background: var(--contenedor);
+  border-radius: 18px 18px 0 0;
+  min-height: 100vh;
 }
 
-.widget { margin-bottom: 22px; }
-.widget h3 {
-  margin: 0 0 6px; font: bold 10px Verdana, sans-serif;
-  text-transform: uppercase; letter-spacing: 1px;
+/* columnas laterales */
+.widget { margin-bottom: 20px; }
+.widget h3, .fecha {
+  margin: 0 0 6px; font: bold 10.5px var(--chica);
+  text-transform: uppercase; letter-spacing: .3px;
 }
-.chico { font-size: 12px; margin: 6px 0; }
-.link { display: block; }
+.widget h3 { color: var(--titulito); }
+.chico { font-size: 11px; display: block; }
+.perfil { margin: 0 0 4px; font: bold 11px var(--chica); }
+.perfil-icono { font-size: 12px; }
 
-.foto-marco { background: #fff; padding: 5px; border: 1px solid var(--borde); box-shadow: 2px 2px 0 var(--rosa); }
-.foto-marco img { display: block; width: 100%; }
+.foto-lateral { display: block; width: 72%; aspect-ratio: 4 / 3; object-fit: cover; margin: 0 0 22px; }
+.foto-lateral.ancha { width: 100%; aspect-ratio: 16 / 9; }
+.foto-lateral.media { width: 62%; aspect-ratio: 4 / 5; }
+.denunciar { display: block; margin: 0 0 30px; font: bold 11px var(--cuerpo); }
 
-/* contador */
-.contador {
-  display: inline-block; font: bold 18px 'Courier New', monospace; letter-spacing: 3px;
-  background: #222; color: #7dff7d; padding: 2px 8px; border: 2px inset #999;
+.titulo-script {
+  font-family: var(--titulo); font-weight: 600; font-size: 28px; line-height: 1.15;
+  color: var(--rosa); text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); margin-bottom: 6px;
 }
+.descripcion { font-size: 14px; line-height: 1.5; margin: 0 0 24px; }
+.izquierda .descripcion { font-size: 14px; }
 
-/* ipod */
-.ipod { width: 130px; margin: 0 auto 8px; background: linear-gradient(135deg, #ffb7d0, #f47ca6); border-radius: 18px; padding: 12px; box-shadow: inset 0 0 0 2px #fff6; }
-.ipod-pantalla { background: #e6f2f5; border-radius: 5px; padding: 6px; height: 54px; border: 2px solid #c75b84; }
-.cancion { margin: 0; font-size: 11px; line-height: 1.3; height: 30px; overflow: hidden; }
-.barra-progreso { height: 4px; background: #c9dde2; margin-top: 4px; }
-.barra-progreso div { height: 100%; width: 0; background: var(--rosa-oscuro); transition: width .5s linear; }
-.ipod-rueda { width: 70px; height: 70px; margin: 10px auto 0; border-radius: 50%; background: #fff; display: grid; place-items: center; }
-.ipod-rueda button { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--rosa); color: var(--cafe); cursor: pointer; }
-.playlist { font-size: 11px; padding-left: 20px; margin: 0; }
-.playlist li { cursor: pointer; }
-.playlist li.sonando { color: var(--rosa-oscuro); font-weight: bold; }
+.link-inicio { display: block; font: bold 11px var(--chica); margin: 0 0 18px; }
+.corazones { font-size: 11px; line-height: 1.6; margin: 0 0 24px; }
 
-.archivo, .archivo ul { list-style: none; padding-left: 10px; margin: 0; font-size: 12px; }
+/* reproductor estilo Spotify */
+.spotify { background: #4f4f4f; border-radius: 12px; color: #fff; font-family: var(--chica); overflow: hidden; margin-bottom: 24px; }
+.spotify-arriba { display: flex; gap: 14px; padding: 12px 12px 6px; position: relative; }
+.spotify-tapa { width: 76px; height: 76px; object-fit: cover; border-radius: 6px; }
+.spotify-info p { margin: 0; }
+.spotify-cancion { font-size: 17px; font-weight: bold; margin-top: 18px !important; }
+.spotify-artista { font-size: 11px; color: #cfcfcf; }
+.spotify-guardar { font-size: 11px; margin-top: 6px !important; }
+.spotify-logo { position: absolute; top: 10px; right: 12px; font-size: 18px; color: #fff; }
+.spotify-controles { display: flex; align-items: center; gap: 12px; padding: 0 12px 10px; }
+.spotify-preview { font-size: 8px; background: #222; padding: 1px 5px; border-radius: 3px; }
+.spotify-botones { margin-left: auto; font-size: 13px; letter-spacing: 6px; }
+#play { width: 34px; height: 34px; border-radius: 50%; border: none; background: #fff; color: #000; font-size: 13px; cursor: pointer; }
+.spotify-progreso { height: 3px; background: #6a6a6a; }
+.spotify-progreso div { height: 100%; width: 0; background: #fff; transition: width .5s linear; }
+.spotify-lista { list-style: none; margin: 0; padding: 4px 0; counter-reset: tema; background: #464646; }
+.spotify-lista li { counter-increment: tema; display: flex; align-items: center; gap: 12px; padding: 6px 14px; font-size: 11px; cursor: pointer; }
+.spotify-lista li::before { content: counter(tema); color: #cfcfcf; width: 8px; }
+.spotify-lista li:hover, .spotify-lista li.sonando { background: #5c5c5c; }
+.spotify-lista .titulo { display: flex; flex-direction: column; }
+.spotify-lista small { color: #bdbdbd; font-size: 9px; }
+.spotify-lista .dur { margin-left: auto; color: #cfcfcf; }
 
-/* posts */
-.fecha { font: bold 10px Verdana, sans-serif; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 8px; }
-/* posts en cajas amarillo manteca, sin bordes (como pag1) */
-.post {
-  background: var(--manteca);
-  padding: 20px 24px 12px;
-  margin-bottom: 26px;
-}
-.post-titulo { font-family: var(--script); font-weight: normal; font-size: 34px; margin: 0 0 8px; color: var(--link-fondo); line-height: 1.2; }
-.rating { font: bold 12px Verdana, sans-serif; text-transform: uppercase; color: var(--gris-rosa); }
-.post-cuerpo p { margin: 0 0 12px; }
-.fotos-post { display: flex; gap: 10px; margin-bottom: 12px; }
-.fotos-post img { width: 50%; object-fit: cover; aspect-ratio: 4 / 3; border: 4px solid #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .15); }
-.fotos-post img:nth-child(1) { transform: rotate(-2deg); }
-.fotos-post img:nth-child(2) { transform: rotate(2deg); }
-.post-pie { border-top: 1px dotted #e3cf9a; font-size: 11px; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
-.compartir { margin-left: auto; display: flex; gap: 3px; }
-.compartir i { font-style: normal; font-size: 10px; width: 16px; height: 16px; display: grid; place-items: center; border: 1px solid #bbb; background: #f4f4f4; color: #555; }
+/* buscador */
+.buscador { display: flex; gap: 6px; }
+.buscador input { flex: 1; min-width: 0; border: 1px solid #ccc; height: 18px; }
+.buscador button { background: #1a73e8; color: #fff; border: none; border-radius: 10px; font: 10px var(--chica); padding: 2px 10px; }
 
-.divisor-conejos {
-  height: 60px; margin: 12px auto;
-  background: center / auto 150% no-repeat;
-}
+/* ============ POSTS ============ */
+.fecha { color: var(--fecha); margin-bottom: 8px; }
+.post { background: var(--manteca); color: var(--texto-post); padding: 38px 18px 14px; margin-bottom: 26px; }
+.post p { margin: 0 0 14px; }
+.post a { color: var(--rosa-oscuro); }
+.seccion { margin: 18px 0 10px; font: bold 12px var(--chica); color: var(--seccion); text-transform: uppercase; }
+.seccion:first-child { margin-top: 0; }
+.fotos-post { display: flex; justify-content: center; gap: 22px; margin: 6px 0 16px; }
+.fotos-post img { width: 32%; aspect-ratio: 3 / 4; object-fit: cover; }
+.post-pie { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-top: 18px; font-size: 12px; }
+.compartir { display: flex; gap: 2px; margin-left: 14px; }
+.compartir i { font-style: normal; font-size: 9px; width: 15px; height: 15px; display: grid; place-items: center; border: 1px solid #bbb; background: #eee; color: #666; }
 
-.secciones-tease { text-align: center; }
-.secciones-tease h3 { font-family: var(--script); font-weight: normal; font-size: 28px; margin: 0 0 10px; }
-.tease-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.tease { background: #fff; padding: 6px 6px 4px; border: 1px solid var(--borde); text-decoration: none; transition: transform .2s; }
-.tease:hover { transform: rotate(-2deg) scale(1.04); }
-.tease img, .canasta { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-.canasta { display: grid; place-items: center; font-size: 46px; background: repeating-conic-gradient(#f7c6d8 0 25%, #fff 0 50%) 0 0 / 20px 20px; }
-.tease span { font-family: var(--mano); font-size: 11px; display: block; margin-top: 4px; color: var(--cafe); }
-
-/* derecha */
-.bienvenida-script { font-family: var(--script); font-size: 36px; line-height: 1.05; text-align: center; color: var(--rosa-oscuro); text-shadow: 1px 1px 0 #fff, 2px 2px 0 var(--borde); margin-bottom: 16px; }
-.buscador { display: flex; gap: 4px; }
-.buscador input { flex: 1; min-width: 0; border: 1px solid var(--borde); }
-.buscador button { background: #4a8be8; color: #fff; border: none; border-radius: 3px; font-size: 11px; }
-
-/* MSN */
-.msn { border: 1px solid #3a6fc4; border-radius: 6px 6px 0 0; background: #eef3fb; font: 11px Tahoma, Verdana, sans-serif; color: #222; margin-bottom: 22px; box-shadow: 2px 3px 8px rgba(0, 0, 0, .2); }
+/* ============ MSN (libro de visitas) ============ */
+.msn { border: 1px solid #3a6fc4; border-radius: 6px 6px 0 0; background: #eef3fb; font: 11px Tahoma, Verdana, sans-serif; color: #222; margin-bottom: 22px; box-shadow: 2px 3px 8px rgba(0, 0, 0, .3); }
 .msn-barra { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(#3d8af7, #1f5fd1 60%, #1c55bd); color: #fff; font-weight: bold; padding: 3px 4px 3px 7px; border-radius: 5px 5px 0 0; }
 .msn-botones { display: flex; gap: 2px; }
 .msn-botones i { font-style: normal; width: 16px; height: 15px; display: grid; place-items: center; background: #3f7fe8; border: 1px solid #fff; border-radius: 3px; font-size: 10px; }
@@ -267,7 +228,7 @@ a { color: var(--rosa-oscuro); }
 .msn-escribir button { font: inherit; background: linear-gradient(#fff, #dde6f4); border: 1px solid #8aa1c8; border-radius: 3px; cursor: pointer; }
 .msn-estado { padding: 3px 6px; background: #f4f4ee; border-top: 1px solid #b7c8e6; font-size: 10px; }
 
-/* corcho */
+/* ============ CORCHO ============ */
 .corcho {
   position: relative; height: 230px;
   background: #c79a64 radial-gradient(#a87a46 1px, transparent 1.5px) 0 0 / 6px 6px;
@@ -275,28 +236,11 @@ a { color: var(--rosa-oscuro); }
 }
 .polaroid { position: absolute; margin: 0; width: 110px; background: #fff; padding: 5px 5px 2px; box-shadow: 1px 2px 5px rgba(0, 0, 0, .35); }
 .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-.polaroid figcaption { font-family: var(--mano); font-size: 9px; text-align: center; }
+.polaroid figcaption { font-family: var(--mano); font-size: 9px; text-align: center; color: var(--cafe); }
 .polaroid::before { content: ''; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff9ab9, #d93d72); }
 .p1 { top: 12px; left: 8px; transform: rotate(-6deg); }
 .p2 { top: 50px; right: 6px; transform: rotate(5deg); }
-.postit { position: absolute; bottom: 10px; left: 22px; width: 90px; padding: 6px; background: #fff59d; font-family: var(--mano); font-size: 10px; transform: rotate(3deg); box-shadow: 1px 2px 3px rgba(0, 0, 0, .25); }
-
-.ficha { background: #fff; border: 2px solid var(--verde-fuerte); padding: 8px 10px; text-align: center; font-size: 12px; }
-.ficha p { margin: 2px 0; }
-
-.blinkies { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.blinkie { display: block; width: 150px; text-align: center; font: bold 10px Verdana, sans-serif; padding: 3px 0; border: 1px solid #fff; color: #fff; animation: blink 1s steps(2) infinite; }
-.b1 { background: #f47ca6; } .b2 { background: #9cc47a; animation-delay: .3s; } .b3 { background: #b48be0; animation-delay: .6s; }
-@keyframes blink { 50% { filter: brightness(1.25) saturate(1.3); } }
-
-.pie { text-align: center; font-size: 11px; padding: 0 14px 20px; }
-
-/* texto que va directo sobre el fondo (no adentro de cajas) */
-.lateral, .pie, .secciones-tease h3, #salir { color: var(--sobre-fondo); }
-.lateral a, .pie a, .fecha { color: var(--link-fondo); }
-.widget h3 { color: var(--gris-rosa); }
-.ficha, .ipod-pantalla { color: var(--cafe); }
-.bienvenida-script { color: var(--cafe); text-align: left; text-shadow: 1px 1px 0 #fff, 2px 2px 3px rgba(110, 69, 82, .25); }
+.postit { position: absolute; bottom: 10px; left: 22px; width: 90px; padding: 6px; background: #fff59d; color: var(--cafe); font-family: var(--mano); font-size: 10px; transform: rotate(3deg); box-shadow: 1px 2px 3px rgba(0, 0, 0, .25); }
 
 /* brillitos del cursor */
 .brillo { position: fixed; pointer-events: none; z-index: 200; font-size: 12px; color: var(--rosa-fuerte); animation: brillo .8s ease-out forwards; }
@@ -304,15 +248,14 @@ a { color: var(--rosa-oscuro); }
 
 /* ============ CELULAR ============ */
 @media (max-width: 820px) {
-  .columnas { grid-template-columns: 1fr; padding: 16px; }
+  .contenedor { grid-template-columns: 1fr; padding: 16px; }
   .posts { order: -1; }
-  .rotulo h1 { font-size: 46px; }
-  .te-amo { font-size: 32px; }
-  .tease-grid { grid-template-columns: 1fr 1fr; }
   .barra-links { display: none; }
+  .foto-lateral { width: 60%; }
+  .fotos-post img { width: 45%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquesina span, .blinkie, .luces { animation: none; }
+  .luces { animation: none; }
   .hoja { transition-duration: .3s; }
 }
