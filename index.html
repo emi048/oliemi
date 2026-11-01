@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oli & Emi ♡ el blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Delius&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<!-- ====== PORTÓN DE ENTRADA ====== -->
+<div id="porton" class="porton">
+  <div class="porton-escena">
+    <div class="hoja hoja-izq"></div>
+    <div class="hoja hoja-der"></div>
+  </div>
+  <div class="porton-login">
+    <p class="porton-titulo">¿quién entra?</p>
+    <div class="porton-botones">
+      <button data-quien="Oli">Oli ♡</button>
+      <button data-quien="Emi">Emi ♡</button>
+      <button data-quien="visita" class="visita">soy visita</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== BLOG ====== -->
+<div class="pagina">
+
+  <div class="barra-blogger">
+    <span class="logo-b">B</span>
+    <input type="text" placeholder="" aria-label="buscar">
+    <span class="mas">Más ▾</span>
+    <span class="der"><span id="saludo">hola ♡</span> · <a href="#" id="salir">salir</a></span>
+  </div>
+
+  <header class="cabecera">
+    <div class="rotulo">
+      <h1>Oli <span>&amp;</span> Emi</h1>
+      <p class="bajada">un rinconcito de internet para lo que comemos, compramos, guardamos y queremos</p>
+    </div>
+  </header>
+
+  <nav class="pestanas">
+    <a href="#" class="activa">Inicio</a>
+    <a href="#">El portón ✿</a>
+    <a href="#">El super 🛒</a>
+    <a href="#">Nuestro plato ♡</a>
+    <a href="#">Qué hay en mi bolso</a>
+    <a href="#">El corcho 📌</a>
+  </nav>
+
+  <div class="marquesina"><span>✿ bienvenidxs al blog de oli y emi ✿ dejen su mensajito en el msn ✿ actualizado con amor ✿ ♡ ✿ bienvenidxs al blog de oli y emi ✿ dejen su mensajito en el msn ✿ actualizado con amor ✿ ♡ ✿</span></div>
+
+  <div class="columnas">
+
+    <!-- ====== IZQUIERDA ====== -->
+    <aside class="lateral">
+      <div class="widget">
+        <h3>quiénes somos ♡</h3>
+        <div class="foto-marco"><img src="img/oliemi.jpg" alt="Oli y Emi"></div>
+        <p class="chico">Oli &amp; Emi. Escribimos de a dos sobre lo que nos gusta, lo que comemos y a dónde vamos.</p>
+        <a class="chico link" href="#">ver perfil completo</a>
+      </div>
+
+      <div class="widget">
+        <h3>total de visitas</h3>
+        <div class="contador" id="contador">000000</div>
+      </div>
+
+      <div class="widget">
+        <h3>sonando ahora ♫</h3>
+        <div class="ipod">
+          <div class="ipod-pantalla">
+            <p class="cancion" id="cancion">nuestra canción</p>
+            <div class="barra-progreso"><div id="progreso"></div></div>
+          </div>
+          <div class="ipod-rueda"><button id="play" aria-label="play">▶</button></div>
+        </div>
+        <ol class="playlist" id="playlist">
+          <li>canción 1 — artista</li>
+          <li>canción 2 — artista</li>
+          <li>canción 3 — artista</li>
+          <li>canción 4 — artista</li>
+        </ol>
+      </div>
+
+      <div class="widget">
+        <h3>mi peluche espiritual</h3>
+        <div class="foto-marco"><img src="img/peluches.jpg" alt="peluches abrazados"></div>
+      </div>
+
+      <div class="widget">
+        <h3>archivo del blog</h3>
+        <ul class="archivo">
+          <li>▾ 2026 (2)
+            <ul><li>▾ noviembre (2)
+              <ul><li><a href="#post-bienvenida">bienvenidxs al portón</a></li><li><a href="#post-galletas">la tarde de las galletas</a></li></ul>
+            </li></ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ====== CENTRO / POSTS ====== -->
+    <main class="posts">
+      <h2 class="fecha">sábado, 1 de noviembre de 2026</h2>
+
+      <article class="post" id="post-bienvenida">
+        <h2 class="post-titulo">bienvenidxs al portón ✿</h2>
+        <div class="post-cuerpo">
+          <p>Hola hola!! Este es nuestro blog, hecho como los de antes: con brillitos, música y demasiados corazones.</p>
+          <p>Acá vamos a ir guardando lo que nos pasa: lo que compramos en el super, nuestras comidas favoritas, qué llevamos en la cartera, los lugares que visitamos y lo que se nos vaya ocurriendo.</p>
+          <div class="divisor-conejos"></div>
+          <p>Pasen, pónganse cómodxs y dejen un mensajito en el MSN de la derecha →</p>
+        </div>
+        <div class="post-pie">
+          publicado por <b>Oli &amp; Emi</b> a las 3:40 · <a href="#">0 comentarios</a> · etiquetas: <a href="#">random</a>
+          <span class="compartir"><i>✉</i><i>B</i><i>f</i><i>t</i></span>
+        </div>
+      </article>
+
+      <article class="post" id="post-galletas">
+        <h2 class="post-titulo">la tarde de las galletas 🍪</h2>
+        <div class="post-cuerpo">
+          <div class="fotos-post">
+            <img src="img/galletas.jpg" alt="galletas">
+            <img src="img/cafe.jpg" alt="café">
+          </div>
+          <p>Post de ejemplo: acá va lo que quieran contar de ese día. Pueden poner fotos, una receta, o calificar la merienda del 1 al 5 ♡♡♡♡♡</p>
+          <p class="rating"><b>⭐ nuestra calificación:</b> 5/5</p>
+        </div>
+        <div class="post-pie">
+          publicado por <b>Emi</b> a las 1:02 · <a href="#">0 comentarios</a> · etiquetas: <a href="#">nuestro plato</a>
+          <span class="compartir"><i>✉</i><i>B</i><i>f</i><i>t</i></span>
+        </div>
+      </article>
+
+      <div class="secciones-tease">
+        <h3>✿ próximamente en el blog ✿</h3>
+        <div class="tease-grid">
+          <a href="#" class="tease"><img src="img/plato.jpg" alt=""><span>nuestro plato</span></a>
+          <a href="#" class="tease"><img src="img/bolso.jpg" alt=""><span>qué hay en mi bolso</span></a>
+          <a href="#" class="tease tease-super"><div class="canasta">🛒</div><span>el super</span></a>
+        </div>
+      </div>
+    </main>
+
+    <!-- ====== DERECHA ====== -->
+    <aside class="lateral">
+      <div class="bienvenida-script">Welcome to<br>our page ♡</div>
+
+      <div class="widget">
+        <h3>buscar en este blog ♡</h3>
+        <form class="buscador" onsubmit="return false"><input type="text"><button>buscar</button></form>
+      </div>
+
+      <!-- MSN / libro de visitas -->
+      <div class="msn">
+        <div class="msn-barra">
+          <span>💬 Conversación</span>
+          <span class="msn-botones"><i>_</i><i>□</i><i class="x">×</i></span>
+        </div>
+        <div class="msn-menu">Archivo&nbsp; Edición&nbsp; Acciones&nbsp; Ayuda <b>msn<sup>♡</sup></b></div>
+        <div class="msn-para">Para: <b>Oli &amp; Emi</b> &lt;el blog&gt;</div>
+        <div class="msn-chat" id="msn-chat"></div>
+        <form class="msn-escribir" id="msn-form">
+          <input type="text" id="msn-nombre" placeholder="tu nick" maxlength="20">
+          <textarea id="msn-texto" placeholder="escribí un mensajito..." maxlength="200"></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+        <div class="msn-estado">Haz clic para conseguir nuevos emoticones ✿</div>
+      </div>
+
+      <!-- Corcho con viajes -->
+      <div class="widget">
+        <h3>a donde fuimos 📌</h3>
+        <div class="corcho">
+          <figure class="polaroid p1"><img src="img/taj-mahal.jpg" alt="Taj Mahal"><figcaption>taj mahal</figcaption></figure>
+          <figure class="polaroid p2"><img src="img/san-pietro.jpg" alt="San Pietro"><figcaption>san pietro</figcaption></figure>
+          <div class="postit">próximo viaje: ???</div>
+        </div>
+      </div>
+
+      <div class="widget ficha">
+        <p>Fecha: ✿ ___</p>
+        <p>Signos: <b>___ &amp; ___</b></p>
+        <p>Color: rosa</p>
+        <p>En una palabra: <b>nosotros</b></p>
+        <p>Forma: corazón</p>
+      </div>
+
+      <div class="blinkies">
+        <span class="blinkie b1">oli ♡ emi</span>
+        <span class="blinkie b2">hecho a mano</span>
+        <span class="blinkie b3">best viewed 800x600</span>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="pie">
+    <div class="divisor-conejos"></div>
+    <p>© 2026 Oli &amp; Emi ♡ tema "portón rosa" · con tecnología de puro amor</p>
+  </footer>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
