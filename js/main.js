@@ -4,6 +4,39 @@ const guardado = {
   escribir(clave, valor) { try { localStorage.setItem(clave, JSON.stringify(valor)); } catch {} },
 };
 
+/* ---------- Imágenes con fondo blanco: se lo saco para que sirvan sobre cualquier color ---------- */
+const sinBlancoCache = {};
+function quitarBlanco(src) {
+  sinBlancoCache[src] ??= new Promise((ok, mal) => {
+    const img = new Image();
+    img.onload = () => {
+      const lienzo = document.createElement('canvas');
+      lienzo.width = img.naturalWidth;
+      lienzo.height = img.naturalHeight;
+      const ctx = lienzo.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const datos = ctx.getImageData(0, 0, lienzo.width, lienzo.height);
+      const p = datos.data;
+      for (let i = 0; i < p.length; i += 4) {
+        const minimo = Math.min(p[i], p[i + 1], p[i + 2]);
+        // blanco puro → transparente; casi blanco → semitransparente (bordes suaves)
+        if (minimo >= 245) p[i + 3] = 0;
+        else if (minimo > 205) p[i + 3] = Math.round(((245 - minimo) / 40) * 255);
+      }
+      ctx.putImageData(datos, 0, 0);
+      ok(lienzo.toDataURL('image/png'));
+    };
+    img.onerror = mal;
+    img.src = src;
+  });
+  return sinBlancoCache[src];
+}
+document.querySelectorAll('[data-sin-blanco]').forEach(el => {
+  quitarBlanco(el.dataset.sinBlanco)
+    .then(url => { el.style.backgroundImage = `url(${url})`; })
+    .catch(() => { el.style.backgroundImage = `url(${el.dataset.sinBlanco})`; });
+});
+
 /* ---------- Portón ---------- */
 const porton = document.getElementById('porton');
 const saludo = document.getElementById('saludo');
