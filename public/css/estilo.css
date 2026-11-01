@@ -75,7 +75,7 @@ img { max-width: 100%; }
 .barra-links::-webkit-scrollbar { display: none; }
 .barra-links a { flex: none; color: var(--cafe); text-decoration: none; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
 .barra-links a:hover { background: rgba(110, 69, 82, .12); }
-.barra-links a + a::before { content: '♡'; color: #b9a2a8; margin-right: 12px; margin-left: -6px; }
+.barra-links a + a { border-left: 1px solid #b9a2a8; border-radius: 0; }
 .barra-der { flex: none; margin-left: auto; position: relative; }
 
 /* muñequito de messenger de los 2000 */
@@ -114,12 +114,13 @@ img { max-width: 100%; }
 .panel-opcion:hover { background: var(--rosa-claro); }
 
 /* ============ CABECERA (mismo verde que el fondo) con las luces colgando ============ */
-.cabecera { padding: 16px 22px 0; }
+/* franja un tono más clara que el fondo: de su borde de abajo cuelga la guirnalda */
+.cabecera { padding: 16px 22px 14px; background: #313a1c; border-bottom: 1px solid #3e4825; }
 .cabecera h1 { font-family: var(--titulo); font-weight: normal; font-size: 64px; line-height: 1; margin: 0; color: var(--rosa); }
 .bajada { margin: 2px 0 0 4px; font-size: 15px; }
 
 .luces {
-  height: 64px; margin: 6px 0 0;
+  height: 64px; margin: -2px 0 0;
   /* la imagen la pone main.js recortada y sin el fondo blanco */
   background: 0 0 / auto 100% repeat-x;
   background-repeat: round no-repeat;
@@ -130,7 +131,7 @@ img { max-width: 100%; }
 /* ============ 3 COLUMNAS ============ */
 .columnas {
   display: grid;
-  grid-template-columns: 220px 1fr 320px;
+  grid-template-columns: 250px 1fr 320px;
   gap: 26px;
   max-width: 1240px;
   margin: 10px auto 0;
@@ -144,9 +145,35 @@ img { max-width: 100%; }
   border-bottom: 1px dotted rgba(182, 189, 146, .5); padding-bottom: 3px;
 }
 
-/* foto vertical con su recuadro */
-.foto-marco { background: #fff; padding: 6px; border: 1px solid var(--borde); box-shadow: 3px 3px 0 var(--rosa); }
-.foto-marco img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+/* collage de fotos pegadas, desordenadas a propósito */
+.collage { position: relative; aspect-ratio: 250 / 510; margin-bottom: 14px; }
+.foto-pegada {
+  position: absolute; margin: 0;
+  background: #fff; padding: 5px 5px 14px;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, .45);
+  transition: transform .2s, z-index 0s;
+}
+.foto-pegada img { display: block; width: 100%; object-fit: cover; }
+.foto-pegada:hover { z-index: 5; transform: rotate(0) scale(1.06); }
+/* cinta adhesiva arriba */
+.cinta::before {
+  content: ''; position: absolute; top: -8px; left: 50%; width: 46px; height: 16px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: rgba(247, 211, 223, .75);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+.f1 { left: 1%;  top: 0;   width: 62%; transform: rotate(-3deg); z-index: 2; }
+.f1 img { aspect-ratio: 3 / 4; }
+.f2 { left: 52%; top: 8%;  width: 46%; transform: rotate(6deg); }
+.f2 img { aspect-ratio: 1; }
+.f3 { left: 6%;  top: 43%; width: 52%; transform: rotate(4deg); z-index: 3; }
+.f3 img { aspect-ratio: 4 / 3; }
+.f4 { left: 47%; top: 36%; width: 50%; transform: rotate(-7deg); }
+.f4 img { aspect-ratio: 4 / 5; }
+.f5 { left: 2%;  top: 68%; width: 46%; transform: rotate(-5deg); }
+.f5 img { aspect-ratio: 4 / 5; }
+.f6 { left: 42%; top: 75%; width: 56%; transform: rotate(3deg); z-index: 2; }
+.f6 img { aspect-ratio: 16 / 11; }
 
 /* descripción editable */
 .descripcion-editable { margin: 10px 0 4px; font-size: 13px; border-radius: 3px; }
@@ -228,7 +255,7 @@ img { max-width: 100%; }
 @media (max-width: 900px) {
   .columnas { grid-template-columns: 1fr; padding: 0 16px 24px; }
   .posts { order: -1; }
-  .foto-marco { max-width: 260px; }
+  .collage { max-width: 300px; }
   .cabecera { padding: 14px 16px 0; }
   .cabecera h1 { font-size: 52px; }
   .barra { gap: 10px; padding: 7px 10px; }
