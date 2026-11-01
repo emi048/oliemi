@@ -1,0 +1,6 @@
+# Configuración de Netlify para el blog
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"

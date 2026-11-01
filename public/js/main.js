@@ -79,20 +79,59 @@ if (quienYa) {
   saludar(quienYa);
 }
 
-/* ---------- Descripción editable (se guarda solo en este navegador) ---------- */
+/* ---------- Base de datos (funciones de Netlify en /api) ---------- */
+// Devuelve { ok, status, datos }. Si no hay servidor (p. ej. en localhost) devuelve ok: false, status: 0.
+async function api(ruta, opciones = {}) {
+  try {
+    const res = await fetch(`/api/${ruta}`, {
+      ...opciones,
+      headers: { 'content-type': 'application/json', ...opciones.headers },
+    });
+    const datos = await res.json().catch(() => null);
+    return { ok: res.ok, status: res.status, datos };
+  } catch {
+    return { ok: false, status: 0, datos: null };
+  }
+}
+
+/* ---------- Descripción editable (compartida; pide la clave del blog) ---------- */
 const descripcion = document.getElementById('descripcion');
 const botonEditar = document.getElementById('editar-descripcion');
 const notaEditar = document.getElementById('editar-nota');
-const descripcionGuardada = guardado.leer('descripcion', null);
-if (descripcionGuardada) descripcion.textContent = descripcionGuardada;
 
-botonEditar.addEventListener('click', () => {
+api('descripcion').then(({ ok, datos }) => {
+  if (ok && datos?.texto) descripcion.textContent = datos.texto;
+  else if (!ok) {
+    // sin servidor: lo último guardado en este navegador
+    const local = guardado.leer('descripcion', null);
+    if (local) descripcion.textContent = local;
+  }
+});
+
+async function guardarDescripcion(texto) {
+  let clave = guardado.leer('clave-blog', '');
+  if (!clave) {
+    clave = prompt('clave del blog ♡') ?? '';
+    if (!clave) return 'no se guardó (falta la clave)';
+  }
+  const { ok, status } = await api('descripcion', {
+    method: 'PUT',
+    headers: { 'x-clave': clave },
+    body: JSON.stringify({ texto }),
+  });
+  if (ok) { guardado.escribir('clave-blog', clave); return 'guardado para los dos ♡'; }
+  if (status === 401) { guardado.escribir('clave-blog', ''); return 'clave incorrecta, probá de nuevo'; }
+  guardado.escribir('descripcion', texto);
+  return status === 0 ? 'guardado solo en esta compu' : 'no se pudo guardar, probá más tarde';
+}
+
+botonEditar.addEventListener('click', async () => {
   const editando = descripcion.isContentEditable;
   if (editando) {
     descripcion.contentEditable = 'false';
-    guardado.escribir('descripcion', descripcion.textContent.trim());
     botonEditar.textContent = '✎ editar';
-    notaEditar.textContent = 'guardado en esta compu ♡';
+    notaEditar.textContent = 'guardando…';
+    notaEditar.textContent = await guardarDescripcion(descripcion.textContent.trim());
   } else {
     descripcion.contentEditable = 'true';
     descripcion.focus();
@@ -124,12 +163,17 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') abrirPanel(false); });
 
-/* ---------- MSN / libro de visitas ---------- */
+/* ---------- MSN / libro de visitas (compartido) ---------- */
 const chat = document.getElementById('msn-chat');
-const mensajes = guardado.leer('msn', [
+let mensajes = guardado.leer('msn', [
   { nick: 'Oli ♡', texto: 'bienvenidxs a nuestro blog!! dejen un mensajito :)' },
   { nick: 'Emi ♡', texto: 'firmen el libro de visitas 🌸' },
 ]);
+let msnEnServidor = false;
+
+api('msn').then(({ ok, datos }) => {
+  if (ok && Array.isArray(datos)) { msnEnServidor = true; mensajes = datos; pintarChat(); }
+});
 
 function pintarChat() {
   chat.innerHTML = '';
@@ -146,15 +190,21 @@ function pintarChat() {
 }
 pintarChat();
 
-document.getElementById('msn-form').addEventListener('submit', e => {
+document.getElementById('msn-form').addEventListener('submit', async e => {
   e.preventDefault();
   const nick = document.getElementById('msn-nombre').value.trim() || 'anónimx';
   const campo = document.getElementById('msn-texto');
   const texto = campo.value.trim();
   if (!texto) return;
+  campo.value = '';
+
+  if (msnEnServidor) {
+    const { ok, datos } = await api('msn', { method: 'POST', body: JSON.stringify({ nick, texto }) });
+    if (ok && Array.isArray(datos)) { mensajes = datos; pintarChat(); return; }
+  }
+  // sin servidor: queda en este navegador
   mensajes.push({ nick, texto });
   guardado.escribir('msn', mensajes.slice(-30));
-  campo.value = '';
   pintarChat();
 });
 
