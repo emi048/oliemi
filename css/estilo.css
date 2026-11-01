@@ -31,7 +31,7 @@ body {
   font-family: var(--cuerpo);
   font-size: 13.5px;
   line-height: 1.55;
-  background: var(--fondo) url('../img/fondo-espirales.svg') 0 0 / 900px 900px;
+  background: var(--fondo);
 }
 
 a { color: var(--link); }
