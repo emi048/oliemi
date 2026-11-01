@@ -6,7 +6,7 @@
   --rosa-oscuro: #c2507a;
   --verde: #e3f1d1;
   --verde-fuerte: #9cc47a;
-  --fondo: #c9e0b4; /* verde pistacho de fondo */
+  --fondo: #f5b8cc; /* rosa de fondo */
   --cafe: #6b4a4f;
   --crema: #fffaf3;
   --borde: #f0b9cb;
@@ -108,6 +108,7 @@ a { color: var(--rosa-oscuro); }
 .rotulo h1 { font-family: var(--script); font-weight: normal; font-size: 76px; line-height: 1; margin: 0; color: var(--cafe); }
 .rotulo h1 span { color: var(--rosa-oscuro); }
 .bajada { margin: 6px 0 0; font-size: 13px; }
+.te-amo { font-family: var(--script); font-size: 48px; line-height: 1.1; color: #000; margin: 18px 0 0; }
 
 /* pestañas */
 .pestanas { display: flex; flex-wrap: wrap; gap: 4px; padding: 14px 14px 0; border-bottom: 3px solid var(--rosa-fuerte); }
@@ -198,7 +199,7 @@ a { color: var(--rosa-oscuro); }
 .tease span { font-family: var(--mano); font-size: 11px; display: block; margin-top: 4px; color: var(--cafe); }
 
 /* derecha */
-.bienvenida-script { font-family: var(--script); font-size: 36px; line-height: 1.05; text-align: center; color: var(--rosa-fuerte); text-shadow: 1px 1px 0 #fff, 2px 2px 0 var(--borde); margin-bottom: 16px; }
+.bienvenida-script { font-family: var(--script); font-size: 36px; line-height: 1.05; text-align: center; color: var(--rosa-oscuro); text-shadow: 1px 1px 0 #fff, 2px 2px 0 var(--borde); margin-bottom: 16px; }
 .buscador { display: flex; gap: 4px; }
 .buscador input { flex: 1; min-width: 0; border: 1px solid var(--borde); }
 .buscador button { background: #4a8be8; color: #fff; border: none; border-radius: 3px; font-size: 11px; }
