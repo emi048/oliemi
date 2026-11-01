@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oli & Emi ♡ el blog</title>
+<title>oli & emi ♡ el blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Parisienne&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Dancing+Script:wght@600&family=Parisienne&family=Sacramento&family=Homemade+Apple&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
@@ -27,14 +27,19 @@
   </div>
 </div>
 
-<!-- ====== BARRA DE ARRIBA con las luces colgando ====== -->
+<!-- ====== BARRA DE ARRIBA ====== -->
 <div class="barra">
   <span class="barra-logo">oliemi ♡</span>
-  <span class="barra-links">
-    <a href="#post-bienvenida">inicio</a>
+  <nav class="barra-links">
+    <a href="#">inicio</a>
     <a href="#archivo">archivo</a>
     <a href="#msn-chat">libro de visitas</a>
-  </span>
+    <a href="#">super</a>
+    <a href="#">guardarropa</a>
+    <a href="#">inserte</a>
+    <a href="#">texto</a>
+  </nav>
+
   <!-- muñequito de messenger: abre el panel del perfil -->
   <div class="barra-der">
     <button class="messenger-boton" id="messenger-boton" aria-label="abrir perfil" aria-expanded="false" aria-controls="panel-perfil">
@@ -48,156 +53,109 @@
       <span class="messenger-estado"></span>
     </button>
     <div class="panel-perfil" id="panel-perfil" hidden>
-      <div class="panel-barra">
-        <span>💬 <span id="saludo">hola ♡</span></span>
-        <span class="panel-en-linea">● En línea</span>
+      <div class="panel-cabeza">
+        <span class="panel-hola" id="saludo">hola ♡</span>
+        <span class="panel-en-linea"><i></i>en línea</span>
       </div>
-      <a href="#" class="panel-opcion"><span class="panel-icono">👤</span> Perfil</a>
-      <a href="#" class="panel-opcion"><span class="panel-icono">⚙️</span> Configuración</a>
-      <a href="#" class="panel-opcion" id="salir"><span class="panel-icono">🚪</span> Cerrar sesión</a>
+      <a href="#" class="panel-opcion">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/></svg>
+        perfil
+      </a>
+      <a href="#" class="panel-opcion">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6"/></svg>
+        configuración
+      </a>
+      <a href="#" class="panel-opcion" id="salir">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 3.5H4.5v13H8M12 6.5 15.5 10 12 13.5M15.5 10H8"/></svg>
+        cerrar sesión
+      </a>
     </div>
   </div>
 </div>
 
-<!-- ====== CABECERA (de punta a punta) con las luces colgando de abajo ====== -->
+<!-- ====== CABECERA con las luces colgando de abajo ====== -->
 <header class="cabecera">
-  <h1>Oli &amp; Emi</h1>
-  <p class="bajada">♡ Un rinconcito de internet con muchoooooo amor <span class="te-amo">oli te amo ♡</span></p>
+  <h1>oli &amp; emi</h1>
+  <p class="bajada">♡ Un rinconcito de internet con muchoooooo amor</p>
 </header>
-<div class="luces" aria-hidden="true" data-sin-blanco="img/luces-estrella.jpg"></div>
+<div class="luces" aria-hidden="true" data-sin-blanco="img/luces-estrella.jpg" data-recortar></div>
 
-<nav class="pestanas">
-  <a href="#" class="activa">Inicio</a>
-  <a href="#">El super</a>
-  <a href="#">Nuestro plato</a>
-  <a href="#">Qué hay en mi bolso</a>
-</nav>
+<!-- ====== 3 COLUMNAS ====== -->
+<div class="columnas">
 
-<!-- ====== CONTENEDOR CON LAS 3 COLUMNAS ====== -->
-<div class="contenedor">
-
-  <!-- ====== IZQUIERDA ====== -->
-  <aside class="lateral izquierda">
-    <div class="widget" id="archivo">
-      <h3>Archivo del blog</h3>
-      <a class="chico" href="#post-bienvenida">noviembre 2026 (2)</a>
-    </div>
-
+  <!-- ====== IZQUIERDA: foto vertical + descripción editable ====== -->
+  <aside class="lateral">
     <div class="widget">
-      <h3>¿Quiénes somos?</h3>
-      <p class="perfil"><span class="perfil-icono">🎀</span> <a href="#">Oli &amp; Emi</a></p>
-      <a class="chico" href="#">Ver nuestro perfil completo</a>
+      <h3>quiénes somos ♡</h3>
+      <div class="foto-marco"><img src="img/oliemi.jpg" alt="Oli y Emi"></div>
+      <p class="descripcion-editable" id="descripcion">Oli &amp; Emi. Escribimos de a dos sobre lo que nos gusta, lo que comemos y a dónde vamos.</p>
+      <div class="editar-fila">
+        <button class="editar-boton" id="editar-descripcion" hidden>✎ editar</button>
+        <span class="editar-nota" id="editar-nota"></span>
+      </div>
     </div>
 
-    <img class="foto-lateral" src="img/oliemi.jpg" alt="Oli y Emi">
-    <img class="foto-lateral" src="img/peluches.jpg" alt="peluches abrazados">
-    <img class="foto-lateral" src="img/galletas.jpg" alt="galletas">
-
-    <a class="denunciar" href="#">Denunciar abuso</a>
-
-    <div class="titulo-script">Oli &amp;<br>Emi</div>
-    <p class="descripcion">♡ Escribimos sobre lo que comemos, lo que compramos, lo que guardamos y lo que queremos. Esto es mayormente un lugar para nosotros dos, pensamientos random y cosas que nos gustan.</p>
-
-    <img class="foto-lateral" src="img/cafe.jpg" alt="café">
-    <img class="foto-lateral" src="img/guerrin.jpg" alt="pizza">
+    <div class="widget" id="archivo">
+      <h3>archivo del blog</h3>
+      <ul class="archivo">
+        <li>▾ 2026 (2)
+          <ul><li>▾ noviembre (2)
+            <ul><li><a href="#post-bienvenida">bienvenidxs al portón</a></li><li><a href="#post-galletas">la tarde de las galletas</a></li></ul>
+          </li></ul>
+        </li>
+      </ul>
+    </div>
   </aside>
 
-  <!-- ====== CENTRO / POSTS ====== -->
+  <!-- ====== CENTRO: posts tipo carta ====== -->
   <main class="posts">
-    <h2 class="fecha">sábado 1 de noviembre de 2026</h2>
+    <h2 class="fecha">sábado, 1 de noviembre de 2026</h2>
 
     <article class="post" id="post-bienvenida">
-      <h4 class="seccion">📖 Bienvenidxs</h4>
-      <p><i>Oli &amp; Emi</i> es un blog hecho como los de antes: con brillitos, música y demasiados corazones. Un rinconcito para <b>nosotros dos</b> y para quien quiera pasar a visitarnos.</p>
-      <p>Acá vamos a ir guardando lo que nos pasa: lo que compramos en el super, nuestras comidas favoritas, qué llevamos en la cartera, los lugares que visitamos y lo que se nos vaya ocurriendo.</p>
-
-      <div class="fotos-post">
-        <img src="img/oliemi.jpg" alt="Oli y Emi">
-        <img src="img/san-pietro.jpg" alt="San Pietro">
+      <h2 class="post-titulo">bienvenidxs al portón ✿</h2>
+      <div class="post-cuerpo">
+        <p>Hola hola!! Este es nuestro blog, hecho como los de antes: con brillitos, música y demasiados corazones.</p>
+        <p>Acá vamos a ir guardando lo que nos pasa: lo que compramos en el super, nuestras comidas favoritas, qué llevamos en la cartera, los lugares que visitamos y lo que se nos vaya ocurriendo.</p>
+        <div class="divisor-conejos" data-sin-blanco="img/conejitos.jpg"></div>
+        <p>Pasen, pónganse cómodxs y dejen un mensajito en el MSN de la derecha →</p>
       </div>
-
-      <h4 class="seccion">👥 Quiénes escriben</h4>
-      <p><b>Oli</b> – ___ (acá va una descripción de Oli).</p>
-      <p><b>Emi</b> – ___ (acá va una descripción de Emi).</p>
-
-      <h4 class="seccion">⭐ Lo que se viene</h4>
-      <p>El <b>super</b>, <b>nuestro plato</b> y <b>qué hay en mi bolso</b>. Mientras tanto, dejen un mensajito en el MSN de la derecha ♡</p>
-
       <div class="post-pie">
-        <a href="#">a las 3:40</a> &nbsp; <a href="#">0 comentarios:</a>
-        <span class="compartir"><i>✉</i><i>B</i><i>t</i><i>f</i><i>P</i></span>
+        publicado por <b>Oli &amp; Emi</b> a las 3:40 · <a href="#">0 comentarios</a> · etiquetas: <a href="#">random</a>
+        <span class="compartir"><i>✉</i><i>B</i><i>f</i><i>t</i></span>
       </div>
     </article>
 
     <article class="post" id="post-galletas">
-      <h4 class="seccion">🍪 La tarde de las galletas</h4>
-      <p>Post de ejemplo: acá va lo que quieran contar de ese día, una receta o dónde fueron a merendar.</p>
-
-      <div class="fotos-post">
-        <img src="img/galletas.jpg" alt="galletas">
-        <img src="img/cafe.jpg" alt="café">
+      <h2 class="post-titulo">la tarde de las galletas 🍪</h2>
+      <div class="post-cuerpo">
+        <div class="fotos-post">
+          <img src="img/galletas.jpg" alt="galletas">
+          <img src="img/cafe.jpg" alt="café">
+        </div>
+        <p>Post de ejemplo: acá va lo que quieran contar de ese día. Pueden poner fotos, una receta, o calificar la merienda del 1 al 5 ♡♡♡♡♡</p>
+        <p class="rating"><b>⭐ nuestra calificación:</b> 5/5</p>
       </div>
-
-      <h4 class="seccion">👥 Quiénes fueron</h4>
-      <p><b>Oli</b> y <b>Emi</b> ♡</p>
-
-      <h4 class="seccion">⭐ Nuestra calificación: 5/5</h4>
-      <p>Le damos a esta merienda un <b>5/5</b>. Fue <b>dulce, calentita y muy nuestra</b>.</p>
-
       <div class="post-pie">
-        <a href="#">a las 1:02</a> &nbsp; <a href="#">0 comentarios:</a>
-        <span class="compartir"><i>✉</i><i>B</i><i>t</i><i>f</i><i>P</i></span>
+        publicado por <b>Emi</b> a las 1:02 · <a href="#">0 comentarios</a> · etiquetas: <a href="#">nuestro plato</a>
+        <span class="compartir"><i>✉</i><i>B</i><i>f</i><i>t</i></span>
       </div>
     </article>
   </main>
 
-  <!-- ====== DERECHA ====== -->
-  <aside class="lateral derecha">
-    <div class="titulo-script">Oli &amp; Emi</div>
-    <p class="descripcion">♡ Escribimos sobre lo que comemos, lo que compramos, lo que guardamos y lo que queremos. Esto es mayormente un lugar para nosotros dos y cosas que nos gustan.</p>
-
-    <!-- reproductor estilo Spotify -->
-    <div class="spotify">
-      <div class="spotify-arriba">
-        <img class="spotify-tapa" src="img/peluches.jpg" alt="">
-        <div class="spotify-info">
-          <p class="spotify-cancion" id="cancion">Nuestra canción</p>
-          <p class="spotify-artista">Oli &amp; Emi</p>
-          <p class="spotify-guardar">⊕ Guardar en Spotify</p>
-        </div>
-        <span class="spotify-logo">●</span>
-      </div>
-      <div class="spotify-controles">
-        <span class="spotify-preview">Preview</span>
-        <span class="spotify-botones">⏮ ⏭ ⋯</span>
-        <button id="play" aria-label="play">▶</button>
-      </div>
-      <div class="spotify-progreso"><div id="progreso"></div></div>
-      <ol class="spotify-lista" id="playlist">
-        <li><span class="titulo">canción 1<small>artista</small></span><span class="dur">02:49</span></li>
-        <li><span class="titulo">canción 2<small>artista</small></span><span class="dur">02:55</span></li>
-        <li><span class="titulo">canción 3<small>artista</small></span><span class="dur">03:51</span></li>
-        <li><span class="titulo">canción 4<small>artista</small></span><span class="dur">03:12</span></li>
-      </ol>
-    </div>
-
-    <img class="foto-lateral ancha" src="img/taj-mahal.jpg" alt="Taj Mahal">
-
-    <a class="link-inicio" href="#">Inicio</a>
-    <p class="corazones">♡ a veces lo único que hace falta es una merienda rica y una tarde tranquila ♡ pizza &gt; problemas ♡ dos personas a las que les gustan las cosas lindas, los viajes y los finales felices ♡ una galletita más y nos vamos ♡ últimamente: comer rico, romantizar todo y guardar demasiadas fotos</p>
-
-    <img class="foto-lateral media" src="img/san-pietro.jpg" alt="San Pietro">
-    <img class="foto-lateral media" src="img/plato.jpg" alt="plato">
-
+  <!-- ====== DERECHA: Spotify + MSN + corcho ====== -->
+  <aside class="lateral">
     <div class="widget">
-      <h3>Buscar en este blog</h3>
-      <form class="buscador" onsubmit="return false"><input type="text" aria-label="buscar"><button>Buscar</button></form>
+      <h3>sonando ahora ♫</h3>
+      <iframe class="spotify" title="nuestra playlist en Spotify"
+        src="https://open.spotify.com/embed/playlist/35jSlTY3VHW023X0faOdyx?utm_source=generator&amp;theme=0"
+        height="380" frameborder="0" allowfullscreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <!-- MSN / libro de visitas -->
     <div class="msn">
       <div class="msn-barra">
-        <span>💬 Conversación</span>
+        <span>Conversación</span>
         <span class="msn-botones"><i>_</i><i>□</i><i class="x">×</i></span>
       </div>
       <div class="msn-menu">Archivo&nbsp; Edición&nbsp; Acciones&nbsp; Ayuda <b>msn<sup>♡</sup></b></div>
@@ -213,7 +171,7 @@
 
     <!-- Corcho con viajes -->
     <div class="widget">
-      <h3>A donde fuimos</h3>
+      <h3>a donde fuimos</h3>
       <div class="corcho">
         <figure class="polaroid p1"><img src="img/taj-mahal.jpg" alt="Taj Mahal"><figcaption>taj mahal</figcaption></figure>
         <figure class="polaroid p2"><img src="img/san-pietro.jpg" alt="San Pietro"><figcaption>san pietro</figcaption></figure>
@@ -222,6 +180,11 @@
     </div>
   </aside>
 </div>
+
+<footer class="pie">
+  <div class="divisor-conejos" data-sin-blanco="img/conejitos.jpg"></div>
+  <p>© 2026 oli &amp; emi ♡ con tecnología de puro amor</p>
+</footer>
 
 <script src="js/main.js"></script>
 </body>

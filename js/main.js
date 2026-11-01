@@ -6,8 +6,9 @@ const guardado = {
 
 /* ---------- Imágenes con fondo blanco: se lo saco para que sirvan sobre cualquier color ---------- */
 const sinBlancoCache = {};
-function quitarBlanco(src) {
-  sinBlancoCache[src] ??= new Promise((ok, mal) => {
+// recortar: además deja solo el rectángulo donde hay dibujo (así la guirnalda se repite sin huecos)
+function quitarBlanco(src, recortar = false) {
+  sinBlancoCache[src + recortar] ??= new Promise((ok, mal) => {
     const img = new Image();
     img.onload = () => {
       const lienzo = document.createElement('canvas');
@@ -24,15 +25,30 @@ function quitarBlanco(src) {
         else if (minimo > 205) p[i + 3] = Math.round(((245 - minimo) / 40) * 255);
       }
       ctx.putImageData(datos, 0, 0);
-      ok(lienzo.toDataURL('image/png'));
+      if (!recortar) return ok(lienzo.toDataURL('image/png'));
+
+      let x0 = lienzo.width, y0 = lienzo.height, x1 = 0, y1 = 0;
+      for (let y = 0; y < lienzo.height; y++) {
+        for (let x = 0; x < lienzo.width; x++) {
+          if (p[(y * lienzo.width + x) * 4 + 3] > 60) {
+            if (x < x0) x0 = x; if (x > x1) x1 = x;
+            if (y < y0) y0 = y; if (y > y1) y1 = y;
+          }
+        }
+      }
+      const recorte = document.createElement('canvas');
+      recorte.width = x1 - x0 + 1;
+      recorte.height = y1 - y0 + 1;
+      recorte.getContext('2d').drawImage(lienzo, x0, y0, recorte.width, recorte.height, 0, 0, recorte.width, recorte.height);
+      ok(recorte.toDataURL('image/png'));
     };
     img.onerror = mal;
     img.src = src;
   });
-  return sinBlancoCache[src];
+  return sinBlancoCache[src + recortar];
 }
 document.querySelectorAll('[data-sin-blanco]').forEach(el => {
-  quitarBlanco(el.dataset.sinBlanco)
+  quitarBlanco(el.dataset.sinBlanco, el.hasAttribute('data-recortar'))
     .then(url => { el.style.backgroundImage = `url(${url})`; })
     .catch(() => { el.style.backgroundImage = `url(${el.dataset.sinBlanco})`; });
 });
@@ -41,9 +57,15 @@ document.querySelectorAll('[data-sin-blanco]').forEach(el => {
 const porton = document.getElementById('porton');
 const saludo = document.getElementById('saludo');
 
+function saludar(quien) {
+  saludo.textContent = `hola ${quien.toLowerCase()} ♡`;
+  // solo Oli y Emi pueden editar la descripción
+  document.getElementById('editar-descripcion').hidden = quien === 'visita';
+}
+
 function entrar(quien) {
   try { sessionStorage.setItem('quien', quien); } catch {}
-  saludo.textContent = quien === 'visita' ? 'hola visita ♡' : `hola ${quien} ♡`;
+  saludar(quien);
   porton.classList.add('abierto');
 }
 
@@ -54,8 +76,30 @@ let quienYa = null;
 try { quienYa = sessionStorage.getItem('quien'); } catch {}
 if (quienYa) {
   porton.style.display = 'none';
-  saludo.textContent = quienYa === 'visita' ? 'hola visita ♡' : `hola ${quienYa} ♡`;
+  saludar(quienYa);
 }
+
+/* ---------- Descripción editable (se guarda solo en este navegador) ---------- */
+const descripcion = document.getElementById('descripcion');
+const botonEditar = document.getElementById('editar-descripcion');
+const notaEditar = document.getElementById('editar-nota');
+const descripcionGuardada = guardado.leer('descripcion', null);
+if (descripcionGuardada) descripcion.textContent = descripcionGuardada;
+
+botonEditar.addEventListener('click', () => {
+  const editando = descripcion.isContentEditable;
+  if (editando) {
+    descripcion.contentEditable = 'false';
+    guardado.escribir('descripcion', descripcion.textContent.trim());
+    botonEditar.textContent = '✎ editar';
+    notaEditar.textContent = 'guardado en esta compu ♡';
+  } else {
+    descripcion.contentEditable = 'true';
+    descripcion.focus();
+    botonEditar.textContent = '✓ guardar';
+    notaEditar.textContent = '';
+  }
+});
 
 document.getElementById('salir').addEventListener('click', e => {
   e.preventDefault();
@@ -79,31 +123,6 @@ document.addEventListener('click', e => {
   if (!panelPerfil.hidden && !panelPerfil.contains(e.target)) abrirPanel(false);
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') abrirPanel(false); });
-
-/* ---------- Reproductor estilo Spotify (de mentirita, cambia de canción) ---------- */
-const temas = [...document.querySelectorAll('#playlist li')];
-const cancion = document.getElementById('cancion');
-const progreso = document.getElementById('progreso');
-const play = document.getElementById('play');
-let actual = 0, avance = 0, reloj = null;
-
-function mostrar(i) {
-  temas.forEach(t => t.classList.remove('sonando'));
-  temas[i].classList.add('sonando');
-  cancion.textContent = temas[i].querySelector('.titulo').firstChild.textContent;
-}
-function tic() {
-  avance += 2;
-  if (avance > 100) { avance = 0; actual = (actual + 1) % temas.length; mostrar(actual); }
-  progreso.style.width = avance + '%';
-}
-play.addEventListener('click', () => {
-  if (reloj) { clearInterval(reloj); reloj = null; play.textContent = '▶'; return; }
-  mostrar(actual);
-  reloj = setInterval(tic, 500);
-  play.textContent = '❚❚';
-});
-temas.forEach((t, i) => t.addEventListener('click', () => { actual = i; avance = 0; mostrar(i); }));
 
 /* ---------- MSN / libro de visitas ---------- */
 const chat = document.getElementById('msn-chat');
