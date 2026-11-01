@@ -85,17 +85,54 @@ a { color: var(--rosa-oscuro); }
 }
 @keyframes titilar { 50% { filter: brightness(1.12) saturate(1.25); } }
 .barra-moño {
-  display: flex; align-items: center; gap: 12px;
-  max-width: 1000px; margin: -6px auto 0;
+  display: flex; align-items: center; gap: 14px;
+  max-width: 1000px; margin: -14px auto 0;
   padding: 0 12px;
-  font-size: 12px; color: var(--cafe);
+  color: var(--cafe);
 }
-.logo-moño { font-family: var(--script); font-size: 22px; line-height: 1; color: var(--rosa-oscuro); background: #fff; padding: 2px 10px 0; border-radius: 12px; }
-.barra-links { background: #fffd; padding: 1px 10px; border-radius: 10px; }
-.barra-moño a { color: var(--rosa-oscuro); text-decoration: none; }
-.barra-moño a:hover { text-decoration: underline wavy; }
-.barra-moño .der { margin-left: auto; background: #fff; padding: 1px 10px; border-radius: 10px; }
-#salir { margin-left: 6px; padding: 0 8px; border-radius: 8px; background: var(--rosa-fuerte); color: #fff; }
+
+/* logo dentro del rótulo rosa con corazones (img/rotulo.jpg, fondo blanco fundido) */
+.logo-moño {
+  display: grid; place-items: center;
+  width: 150px; height: 112px; padding-top: 2px;
+  background: url('../img/rotulo.jpg') center / 150px auto no-repeat;
+  mix-blend-mode: multiply;
+  font-family: var(--script); font-size: 30px; color: var(--cafe);
+}
+
+/* links como papelitos de puntilla pegados */
+.barra-links { display: flex; gap: 10px; align-items: center; }
+.papelito {
+  display: inline-block;
+  border: 6px solid transparent;
+  padding: 8px 12px 6px;
+  /* centro crema + borde de puntitos calados, como la postal de puntilla */
+  background:
+    linear-gradient(var(--crema), var(--crema)) padding-box,
+    radial-gradient(circle, var(--crema) 2.6px, transparent 3.1px) 0 0 / 7px 7px border-box;
+  font-family: var(--mano); font-size: 13px; line-height: 1;
+  color: var(--cafe); text-decoration: none;
+  filter: drop-shadow(1px 2px 1px rgba(107, 74, 79, .25));
+  transition: transform .2s;
+}
+.papelito:nth-child(1) { transform: rotate(-3deg); }
+.papelito:nth-child(2) { transform: rotate(2deg); }
+.papelito:nth-child(3) { transform: rotate(-1.5deg); }
+.papelito:hover { transform: rotate(0) scale(1.08); }
+
+/* saludo dentro del globo de texto de papel (img/globo-texto.jpg), recortado con su forma */
+.barra-moño .der { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; }
+.globo-sombra { filter: drop-shadow(1.5px 1.5px 0 #2b2224); }
+.globo {
+  display: flex; align-items: center; justify-content: center;
+  width: 160px; height: 116px; padding: 0 6px 22px 14px;
+  background: url('../img/globo-texto.jpg') -35px -45px / 222px auto no-repeat;
+  clip-path: polygon(20.8% 9.9%, 34.9% 3.9%, 69.8% 2.6%, 85.8% 10.4%, 91.5% 20.8%, 96.2% 31.2%, 98.1% 54.5%, 94.3% 68.8%, 84% 80.5%, 76.4% 85.7%, 34.9% 88.8%, 20.8% 81.8%, 1.9% 98.7%, 11.3% 72.7%, 2.8% 53.2%, 2.8% 36.4%, 9.4% 20.8%);
+  font-family: var(--mano); font-size: 13px; color: var(--cafe);
+}
+#salir { margin-top: -14px; font-family: var(--script); font-size: 22px; color: var(--cafe); text-decoration: none; }
+#salir::before { content: '♡ '; font-family: var(--cuerpo); font-size: 11px; }
+#salir:hover { text-decoration: underline wavy; }
 
 /* cabecera con rótulo */
 .cabecera { padding: 26px 16px 10px; text-align: center; }
