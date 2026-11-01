@@ -74,17 +74,22 @@ a { color: var(--rosa-oscuro); }
   margin: 0 auto 30px;
 }
 
-.barra-blogger {
-  display: flex; align-items: center; gap: 8px;
-  background: linear-gradient(#f4f4f4, #dcdcdc);
-  border-bottom: 1px solid #bbb;
-  padding: 3px 8px;
-  font: 11px Arial, sans-serif; color: #333;
+/* barrita de arriba: vichy rosa con moño */
+.barra-moño {
+  display: flex; align-items: center; gap: 12px;
+  padding: 5px 12px;
+  font-size: 12px; color: var(--cafe);
+  background:
+    linear-gradient(90deg, rgba(228, 122, 159, .28) 50%, transparent 50%) 0 0 / 14px 14px,
+    linear-gradient(rgba(228, 122, 159, .28) 50%, #fff 50%) 0 0 / 14px 14px;
+  border-bottom: 2px dashed var(--rosa-fuerte);
 }
-.logo-b { background: #f57d00; color: #fff; font-weight: bold; border-radius: 3px; padding: 0 5px; }
-.barra-blogger input { width: 120px; height: 18px; border: 1px solid #aaa; }
-.barra-blogger .der { margin-left: auto; }
-.barra-blogger a { color: #333; }
+.logo-moño { font-family: var(--script); font-size: 22px; line-height: 1; color: var(--rosa-oscuro); background: #fff; padding: 2px 10px 0; border-radius: 12px; }
+.barra-links { background: #fffd; padding: 1px 10px; border-radius: 10px; }
+.barra-moño a { color: var(--rosa-oscuro); text-decoration: none; }
+.barra-moño a:hover { text-decoration: underline wavy; }
+.barra-moño .der { margin-left: auto; background: #fff; padding: 1px 10px; border-radius: 10px; }
+#salir { margin-left: 6px; padding: 0 8px; border-radius: 8px; background: var(--rosa-fuerte); color: #fff; }
 
 /* cabecera con rótulo */
 .cabecera { padding: 26px 16px 10px; text-align: center; }
@@ -257,7 +262,7 @@ a { color: var(--rosa-oscuro); }
   .rotulo { padding: 30px 26px 26px; }
   .rotulo h1 { font-size: 52px; }
   .tease-grid { grid-template-columns: 1fr 1fr; }
-  .barra-blogger input, .barra-blogger .mas { display: none; }
+  .barra-links { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
