@@ -63,6 +63,23 @@ document.getElementById('salir').addEventListener('click', e => {
   location.reload();
 });
 
+/* ---------- Panel del perfil (muñequito de messenger) ---------- */
+const botonMessenger = document.getElementById('messenger-boton');
+const panelPerfil = document.getElementById('panel-perfil');
+
+function abrirPanel(abrir) {
+  panelPerfil.hidden = !abrir;
+  botonMessenger.setAttribute('aria-expanded', String(abrir));
+}
+botonMessenger.addEventListener('click', e => {
+  e.stopPropagation();
+  abrirPanel(panelPerfil.hidden);
+});
+document.addEventListener('click', e => {
+  if (!panelPerfil.hidden && !panelPerfil.contains(e.target)) abrirPanel(false);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') abrirPanel(false); });
+
 /* ---------- Reproductor estilo Spotify (de mentirita, cambia de canción) ---------- */
 const temas = [...document.querySelectorAll('#playlist li')];
 const cancion = document.getElementById('cancion');

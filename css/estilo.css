@@ -79,10 +79,43 @@ img { max-width: 100%; }
 .barra-links a { color: var(--cafe); text-decoration: none; padding: 2px 8px; border-radius: 4px; }
 .barra-links a:hover { background: rgba(110, 69, 82, .12); }
 .barra-links a + a::before { content: '♡'; color: #b9a2a8; margin-right: 12px; margin-left: -6px; }
-.barra-der { margin-left: auto; }
-#salir { margin-left: 8px; color: var(--cafe); }
+.barra-der { margin-left: auto; position: relative; }
 
-/* guirnalda: la punta del cable queda pegada al borde de la barra */
+/* muñequito de messenger de los 2000 */
+.messenger-boton {
+  position: relative; display: grid; place-items: center;
+  width: 32px; height: 28px; padding: 0; cursor: pointer;
+  background: none; border: 1px solid transparent; border-radius: 4px;
+}
+.messenger-boton:hover, .messenger-boton[aria-expanded="true"] { background: linear-gradient(#fff, #e3ecf8); border-color: #9db3d8; }
+.messenger-estado { position: absolute; right: 1px; bottom: 1px; width: 8px; height: 8px; border-radius: 50%; background: #5bc236; border: 1px solid #fff; }
+
+/* panel del perfil, estilo ventanita de MSN */
+.panel-perfil {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 50;
+  width: 200px;
+  background: #fff; border: 1px solid #3a6fc4; border-radius: 6px 6px 3px 3px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, .35);
+  font: 12px Tahoma, Verdana, sans-serif; color: #222;
+  overflow: hidden;
+}
+.panel-perfil[hidden] { display: none; }
+.panel-barra {
+  display: flex; flex-direction: column; gap: 1px;
+  padding: 6px 9px;
+  background: linear-gradient(#3d8af7, #1f5fd1 60%, #1c55bd);
+  color: #fff; font-weight: bold;
+}
+.panel-en-linea { font-weight: normal; font-size: 10px; color: #c9f5b4; }
+.panel-opcion {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; color: #222; text-decoration: none;
+  border-top: 1px solid #e3e9f3;
+}
+.panel-opcion:hover { background: #fde7ef; color: var(--cafe); }
+.panel-icono { width: 18px; text-align: center; }
+
+/* guirnalda: la punta del cable queda pegada al borde de abajo de la cabecera */
 .luces {
   height: 70px; margin-top: -4px;
   /* la imagen la pone main.js ya sin el fondo blanco (data-sin-blanco) */
@@ -92,10 +125,10 @@ img { max-width: 100%; }
 @keyframes titilar { 50% { filter: brightness(1.12) saturate(1.25); } }
 
 /* ============ CABECERA: franja de punta a punta ============ */
-.cabecera { margin-top: 4px; padding: 14px 4px 10px; background: var(--franja); }
+.cabecera { padding: 12px 16px 12px; background: var(--franja); }
 .cabecera h1 {
-  font-family: var(--titulo); font-weight: 600; font-size: 34px; line-height: 1.1; margin: 0;
-  color: var(--rosa); text-shadow: 2px 2px 0 rgba(0, 0, 0, .45);
+  font-family: 'Caveat', cursive; font-weight: 600; font-size: 46px; line-height: 1; margin: 0;
+  color: var(--rosa);
 }
 .bajada { margin: 4px 0 0; font-size: 15px; line-height: 1.5; }
 .te-amo { font-family: var(--script); font-size: 22px; color: var(--link); white-space: nowrap; }

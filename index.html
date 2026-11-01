@@ -6,7 +6,7 @@
 <title>Oli & Emi ♡ el blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Parisienne&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Parisienne&family=Homemade+Apple&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
@@ -35,15 +35,36 @@
     <a href="#archivo">archivo</a>
     <a href="#msn-chat">libro de visitas</a>
   </span>
-  <span class="barra-der"><span id="saludo">hola ♡</span> <a href="#" id="salir">salir</a></span>
+  <!-- muñequito de messenger: abre el panel del perfil -->
+  <div class="barra-der">
+    <button class="messenger-boton" id="messenger-boton" aria-label="abrir perfil" aria-expanded="false" aria-controls="panel-perfil">
+      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+        <circle cx="21" cy="9" r="5" fill="#3c8be0" stroke="#1d5aa6"/>
+        <path d="M13 29c0-8 3-13 8-13s8 5 8 13z" fill="#3c8be0" stroke="#1d5aa6"/>
+        <circle cx="12" cy="11" r="6" fill="#6cc04a" stroke="#3a8a24"/>
+        <path d="M2 30c0-9 4-15 10-15s10 6 10 15z" fill="#6cc04a" stroke="#3a8a24"/>
+        <circle cx="10" cy="9" r="1.6" fill="#fff" opacity=".7"/>
+      </svg>
+      <span class="messenger-estado"></span>
+    </button>
+    <div class="panel-perfil" id="panel-perfil" hidden>
+      <div class="panel-barra">
+        <span>💬 <span id="saludo">hola ♡</span></span>
+        <span class="panel-en-linea">● En línea</span>
+      </div>
+      <a href="#" class="panel-opcion"><span class="panel-icono">👤</span> Perfil</a>
+      <a href="#" class="panel-opcion"><span class="panel-icono">⚙️</span> Configuración</a>
+      <a href="#" class="panel-opcion" id="salir"><span class="panel-icono">🚪</span> Cerrar sesión</a>
+    </div>
+  </div>
 </div>
-<div class="luces" aria-hidden="true" data-sin-blanco="img/luces-estrella.jpg"></div>
 
-<!-- ====== CABECERA (franja de punta a punta, como pag1) ====== -->
+<!-- ====== CABECERA (de punta a punta) con las luces colgando de abajo ====== -->
 <header class="cabecera">
   <h1>Oli &amp; Emi</h1>
-  <p class="bajada">♡ Un rinconcito de internet para lo que comemos, compramos, guardamos y queremos. Escribimos de a dos sobre la comida, el super, lo que llevamos en la cartera, los lugares que visitamos y lo que se nos vaya ocurriendo. <span class="te-amo">oli te amo ♡</span></p>
+  <p class="bajada">♡ Un rinconcito de internet con muchoooooo amor <span class="te-amo">oli te amo ♡</span></p>
 </header>
+<div class="luces" aria-hidden="true" data-sin-blanco="img/luces-estrella.jpg"></div>
 
 <nav class="pestanas">
   <a href="#" class="activa">Inicio</a>
